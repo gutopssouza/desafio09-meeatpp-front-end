@@ -4,6 +4,8 @@ import pt from 'date-fns/locale/pt';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
 
+import history from '~/services/history';
+
 import { Container, Meetup } from './styles';
 
 export default function Dashboard() {
@@ -35,6 +37,10 @@ export default function Dashboard() {
     loadMeetups();
   }, [date]);
 
+  function handleDetails(meetup_id) {
+    history.push(`/details/${meetup_id}`);
+  }
+
   return (
     <Container>
       <header>
@@ -54,7 +60,11 @@ export default function Dashboard() {
             <aside>
               <span>{meetup.formattedDate}</span>
               <button type="button">
-                <MdChevronRight size={36} color="#FFF" />
+                <MdChevronRight
+                  size={24}
+                  color="#FFF"
+                  onClick={() => handleDetails(meetup.id)}
+                />
               </button>
             </aside>
           </Meetup>

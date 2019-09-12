@@ -79,7 +79,7 @@ export const Meetup = styled.li`
     button {
       border: 0;
       background: none;
-      margin-top: 4px;
+      margin-top: 5px;
     }
   }
 `;
