@@ -20,6 +20,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
+    toast.success(`Seja bem-vindo ${user.name}`);
     history.push('/dashboard');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
@@ -38,9 +39,9 @@ export function* signUp({ payload }) {
       provider: true,
     });
 
+    toast.success('Usuário cadastrado com sucesso!');
     history.push('/');
   } catch (err) {
-    console.tron.log(err);
     toast.error('Falha no cadastro, verifique seus dados!');
 
     yield put(signFailure());
