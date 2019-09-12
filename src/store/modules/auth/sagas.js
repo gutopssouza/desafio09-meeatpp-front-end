@@ -20,7 +20,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-    toast.success(`Seja bem-vindo ${user.name}`);
+    toast.success(`Seja bem-vindo ${user.name}!`);
     history.push('/dashboard');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
