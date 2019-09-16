@@ -1,41 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
-import api from '~/services/api';
 
 import history from '~/services/history';
 
 import { Container, Meetup } from './styles';
+import { loadMeetUpRequest } from '~/store/modules/meetup/actions';
 
 export default function Dashboard() {
-  const [meetups, setMeetups] = useState([]);
-  const date = new Date();
+  const dispatch = useDispatch();
+  const meetups = useSelector(state => state.meetup.meetups);
 
   useEffect(() => {
-    async function loadMeetups() {
-      const response = await api.get('organizing', {});
-
-      const data = response.data.map(meetup => {
-        const dateFormatted = format(
-          parseISO(meetup.date),
-          "d 'de' MMMM', ás' HH'h'",
-          {
-            locale: pt,
-          }
-        );
-
-        return {
-          ...meetup,
-          formattedDate: dateFormatted,
-        };
-      });
-
-      setMeetups(data);
-    }
-
-    loadMeetups();
-  }, [date]);
+    dispatch(loadMeetUpRequest());
+  }, [dispatch]);
 
   function handleDetails(meetup_id) {
     history.push(`/details/${meetup_id}`);
@@ -58,7 +36,7 @@ export default function Dashboard() {
           <Meetup key={meetup.id}>
             <strong>{meetup.title}</strong>
             <aside>
-              <span>{meetup.formattedDate}</span>
+              <span>{meetup.dateFormatted}</span>
               <button type="button">
                 <MdChevronRight
                   size={24}

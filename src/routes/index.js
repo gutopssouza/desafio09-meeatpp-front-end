@@ -19,7 +19,7 @@ export default function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
 
-      <Route path="/details" component={Details} isPrivate />
+      <Route path="/details/:meetup_id" component={Details} isPrivate />
     </Switch>
   );
 }

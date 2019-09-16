@@ -99,6 +99,7 @@ export const Banner = styled.div`
   align-items: center;
 
   img {
+    width: 600px;
     max-width: 600px;
     height: 300px;
     border-radius: 4px;
