@@ -13,7 +13,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    button {
+    a {
       border: 0;
       background: #d44059;
       border-radius: 4px;

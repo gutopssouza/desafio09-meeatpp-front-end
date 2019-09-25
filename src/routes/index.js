@@ -23,6 +23,7 @@ export default function Routes() {
       <Route path="/details/:meetup_id" component={Details} isPrivate />
 
       <Route path="/meetup/:meetup_id" component={Meetup} isPrivate />
+      <Route path="/meetup/new" component={Meetup} isPrivate />
     </Switch>
   );
 }

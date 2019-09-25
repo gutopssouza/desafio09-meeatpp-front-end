@@ -20,8 +20,13 @@ export default function meetup(state = INITIAL_STATE, action) {
         const id = draft.meetups.findIndex(
           m => m.id === action.payload.meetup.id
         );
-        console.tron.log(id);
         draft.meetups[id] = action.payload.meetup;
+        break;
+      }
+
+      case '@meetup/DESTROY_MEET_UP_SUCCESS': {
+        const id = draft.meetups.findIndex(m => m.id === action.payload.id);
+        draft.meetups.splice(id, 1);
         break;
       }
 

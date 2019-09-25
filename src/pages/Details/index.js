@@ -6,6 +6,8 @@ import history from '~/services/history';
 
 import { Container, Banner } from './styles';
 
+import { destroyMeetUpRequest } from '~/store/modules/meetup/actions';
+
 export default function Details({ match }) {
   const dispatch = useDispatch();
   const { meetup_id } = match.params;
@@ -17,7 +19,9 @@ export default function Details({ match }) {
     history.push(`/meetup/${id}`);
   }
 
-  console.tron.log(meetup);
+  function handleDelete(id) {
+    dispatch(destroyMeetUpRequest(id));
+  }
 
   return (
     <Container>
@@ -32,7 +36,19 @@ export default function Details({ match }) {
             <MdEdit size={20} color="#FFF" />
             Editar
           </button>
-          <button id="btCancel" type="button">
+          <button
+            id="btCancel"
+            type="button"
+            onClick={() => {
+              if (
+                window.confirm(
+                  'Seu meetup será excluído! Deseja mesmo cancelar?'
+                )
+              ) {
+                handleDelete(meetup.id);
+              }
+            }}
+          >
             <MdDeleteForever size={20} color="#FFF" />
             Cancelar
           </button>

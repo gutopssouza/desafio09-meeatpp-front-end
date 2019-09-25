@@ -32,6 +32,20 @@ export function updateMeetUpSuccess(meetup) {
   };
 }
 
+export function destroyMeetUpRequest(id) {
+  return {
+    type: '@meetup/DESTROY_MEET_UP_REQUEST',
+    payload: { id },
+  };
+}
+
+export function destroyMeetUpSuccess(id) {
+  return {
+    type: '@meetup/DESTROY_MEET_UP_SUCCESS',
+    payload: { id },
+  };
+}
+
 export function meetUpFailed() {
   return {
     type: '@meetup/MEET_UP_FAILED',

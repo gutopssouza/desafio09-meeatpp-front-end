@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import history from '~/services/history';
 
@@ -23,12 +24,12 @@ export default function Dashboard() {
     <Container>
       <header>
         <strong>Meus meetups</strong>
-        <button type="button">
+        <Link to="/meetup/new">
           <div>
             <MdAddCircleOutline size={24} color="#FFF" />
           </div>
           Novo meetup
-        </button>
+        </Link>
       </header>
 
       <ul>

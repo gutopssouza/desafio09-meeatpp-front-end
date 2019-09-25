@@ -11,6 +11,7 @@ import {
   loadMeetUpSuccess,
   updateMeetUpSuccess,
   meetUpFailed,
+  destroyMeetUpSuccess,
 } from '~/store/modules/meetup/actions';
 
 export function* loadMeetUp() {
@@ -56,7 +57,6 @@ export function* addMeetUp({ payload }) {
 export function* updateMeetUp({ payload }) {
   try {
     const response = yield call(api.put, `meetups/${payload.id}`, payload.data);
-    console.tron.log(`SALVEI ${JSON.stringify(response.data)}`);
 
     yield put(updateMeetUpSuccess(response.data));
 
@@ -68,8 +68,22 @@ export function* updateMeetUp({ payload }) {
   }
 }
 
+export function* destroyMeetUp({ payload }) {
+  try {
+    yield call(api.delete, `meetups/${payload.id}`);
+    history.push('/dashboard');
+    yield put(destroyMeetUpSuccess(payload.id));
+
+    toast.success('Meetup cancelado com sucesso');
+  } catch (err) {
+    toast.error('Erro ao deletar o meetup');
+    yield put(meetUpFailed());
+  }
+}
+
 export default all([
   takeLatest('@meetup/LOAD_MEET_UP_REQUEST', loadMeetUp),
   takeLatest('@meetup/ADD_MEET_UP', addMeetUp),
   takeLatest('@meetup/UPDATE_MEET_UP_REQUEST', updateMeetUp),
+  takeLatest('@meetup/DESTROY_MEET_UP_REQUEST', destroyMeetUp),
 ]);
