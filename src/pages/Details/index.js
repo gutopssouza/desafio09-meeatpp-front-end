@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdEdit, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
+import history from '~/services/history';
 
 import { Container, Banner } from './styles';
 
@@ -12,6 +13,10 @@ export default function Details({ match }) {
     state.meetup.meetups.find(m => String(m.id) === meetup_id)
   );
 
+  function handleEdit(id) {
+    history.push(`/meetup/${id}`);
+  }
+
   console.tron.log(meetup);
 
   return (
@@ -19,7 +24,11 @@ export default function Details({ match }) {
       <header>
         <strong>{meetup.title}</strong>
         <div>
-          <button id="btEdit" type="button">
+          <button
+            id="btEdit"
+            type="button"
+            onClick={() => handleEdit(meetup.id)}
+          >
             <MdEdit size={20} color="#FFF" />
             Editar
           </button>
@@ -30,8 +39,8 @@ export default function Details({ match }) {
         </div>
       </header>
       <Banner>
-        {meetup.File ? (
-          <img src={meetup.File.url} alt="banner" />
+        {meetup.banner ? (
+          <img src={meetup.banner.url} alt="banner" />
         ) : (
           <span>Imagem não encontrada...</span>
         )}

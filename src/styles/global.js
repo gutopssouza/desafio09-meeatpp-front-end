@@ -25,7 +25,7 @@ body {
   background: linear-gradient(-90deg, #22202C, #402845);
 }
 
-body, input, button {
+body, input, button, textarea {
   font: 14px 'Roboto', 'sans-serif';
 }
 

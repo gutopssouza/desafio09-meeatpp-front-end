@@ -12,6 +12,19 @@ export default function meetup(state = INITIAL_STATE, action) {
         break;
       }
 
+      case '@meetup/ADD_MEET_UP': {
+        draft.meetups.push(action.payload.meetup);
+        break;
+      }
+      case '@meetup/UPDATE_MEET_UP_SUCCESS': {
+        const id = draft.meetups.findIndex(
+          m => m.id === action.payload.meetup.id
+        );
+        console.tron.log(id);
+        draft.meetups[id] = action.payload.meetup;
+        break;
+      }
+
       case '@meetup/MEET_UP_FAILED': {
         break;
       }

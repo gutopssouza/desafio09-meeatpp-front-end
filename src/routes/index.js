@@ -9,6 +9,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 
 import Details from '../pages/Details';
+import Meetup from '../pages/Meetup';
 
 export default function Routes() {
   return (
@@ -20,6 +21,8 @@ export default function Routes() {
       <Route path="/profile" component={Profile} isPrivate />
 
       <Route path="/details/:meetup_id" component={Details} isPrivate />
+
+      <Route path="/meetup/:meetup_id" component={Meetup} isPrivate />
     </Switch>
   );
 }

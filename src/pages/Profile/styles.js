@@ -52,7 +52,8 @@ export const Container = styled.div`
       transition: background 0.2s;
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      padding: 0 15px;
+      justify-content: space-around;
 
       &:hover {
         background: ${darken(0.03, '#d44059')};
